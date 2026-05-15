@@ -1,0 +1,472 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Make a Payment | Don The Electric Mon</title>
+  <meta name="description" content="Securely pay your invoice to Don The Electric Mon — EV charger installation and residential electrical services in Peachtree Corners, GA.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800;900&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <style>
+    :root {
+      --green: #2e7d32;
+      --green-accent: #00c853;
+      --green-light: #e8f5e9;
+      --navy: #0d1b2a;
+      --navy-mid: #162032;
+      --gray-bg: #f8f9fa;
+      --gray-border: #e9ecef;
+      --text: #1a1a1a;
+      --text-mid: #444;
+      --text-light: #777;
+      --radius: 14px;
+      --radius-sm: 8px;
+      --shadow: 0 4px 24px rgba(0,0,0,0.08);
+      --shadow-lg: 0 16px 56px rgba(0,0,0,0.14);
+      --transition: all 0.3s ease;
+    }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body { font-family: 'Inter', sans-serif; color: var(--text); background: var(--gray-bg); overflow-x: hidden; line-height: 1.6; }
+    h1, h2, h3, h4, h5 { font-family: 'Poppins', sans-serif; line-height: 1.2; }
+    a { text-decoration: none; color: inherit; }
+    img { max-width: 100%; display: block; }
+    .container { max-width: 1100px; margin: 0 auto; padding: 0 24px; }
+
+    .reveal { opacity: 0; transform: translateY(22px); transition: opacity 0.65s ease, transform 0.65s ease; }
+    .reveal.in { opacity: 1; transform: none; }
+
+    /* ── TOPBAR ── */
+    .topbar { background: var(--navy); padding: 9px 0; font-size: 13px; color: rgba(255,255,255,.75); }
+    .topbar .container { display: flex; justify-content: space-between; align-items: center; }
+    .topbar-phone { color: var(--green-accent); font-weight: 700; display: flex; align-items: center; gap: 6px; }
+    .topbar-phone:hover { color: #fff; }
+
+    /* ── NAVBAR ── */
+    .navbar { background: #fff; border-bottom: 1px solid var(--gray-border); position: sticky; top: 0; z-index: 999; box-shadow: 0 2px 16px rgba(0,0,0,.07); }
+    .navbar .container { display: flex; align-items: center; justify-content: space-between; height: 68px; }
+    .logo { display: flex; align-items: center; gap: 10px; }
+    .logo-icon { width: 40px; height: 40px; background: var(--green); border-radius: 9px; display: flex; align-items: center; justify-content: center; color: #fff; font-size: 18px; }
+    .logo-name { font-family: 'Poppins', sans-serif; font-weight: 800; font-size: 14.5px; color: var(--text); line-height: 1.15; }
+    .logo-tag { font-size: 11px; color: var(--green); font-weight: 600; }
+    .back-link { display: flex; align-items: center; gap: 7px; font-size: 13.5px; font-weight: 600; color: var(--text-mid); border: 1.5px solid var(--gray-border); padding: 8px 16px; border-radius: var(--radius-sm); transition: var(--transition); }
+    .back-link:hover { border-color: var(--green); color: var(--green); }
+
+    /* ── HERO ── */
+    .hero { background: linear-gradient(135deg, var(--navy) 0%, var(--navy-mid) 60%, #1a3a1a 100%); padding: 60px 0 56px; color: #fff; }
+    .hero .container { text-align: center; }
+    .hero-badge { display: inline-flex; align-items: center; gap: 8px; background: rgba(0,200,83,.12); border: 1px solid rgba(0,200,83,.3); border-radius: 100px; padding: 7px 18px; font-size: 12.5px; font-weight: 700; color: var(--green-accent); letter-spacing: .06em; text-transform: uppercase; margin-bottom: 22px; }
+    .hero h1 { font-size: clamp(32px, 5vw, 54px); font-weight: 900; letter-spacing: -.025em; margin-bottom: 14px; }
+    .hero h1 span { color: var(--green-accent); }
+    .hero p { font-size: 16px; color: rgba(255,255,255,.65); max-width: 500px; margin: 0 auto; line-height: 1.7; }
+
+    /* ── MAIN LAYOUT ── */
+    .main { padding: 56px 0 80px; }
+    .main .container { display: grid; grid-template-columns: 1fr 420px; gap: 40px; align-items: start; }
+
+    /* ── LEFT COLUMN ── */
+    .info-section { margin-bottom: 36px; }
+    .info-section h2 { font-size: 20px; font-weight: 800; color: var(--text); margin-bottom: 22px; display: flex; align-items: center; gap: 10px; }
+    .info-section h2 i { color: var(--green); font-size: 18px; }
+
+    .steps { display: flex; flex-direction: column; gap: 0; }
+    .step { display: flex; gap: 20px; padding: 22px 0; border-bottom: 1px solid var(--gray-border); }
+    .step:last-child { border-bottom: none; }
+    .step-num { width: 46px; height: 46px; background: var(--navy); border-radius: 50%; display: flex; align-items: center; justify-content: center; flex-shrink: 0; border: 2px solid var(--green-accent); }
+    .step-num span { font-family: 'Poppins', sans-serif; font-size: 17px; font-weight: 900; color: var(--green-accent); }
+    .step-body h4 { font-size: 15px; font-weight: 700; color: var(--text); margin-bottom: 4px; }
+    .step-body p { font-size: 13.5px; color: var(--text-light); line-height: 1.6; }
+
+    .alt-methods { background: #fff; border-radius: var(--radius); border: 1px solid var(--gray-border); overflow: hidden; margin-bottom: 36px; }
+    .alt-methods-header { background: var(--navy); padding: 16px 22px; display: flex; align-items: center; gap: 10px; }
+    .alt-methods-header span { font-family: 'Poppins', sans-serif; font-weight: 700; font-size: 13px; color: #fff; text-transform: uppercase; letter-spacing: .06em; }
+    .alt-methods-header i { color: var(--green-accent); }
+    .alt-list { display: flex; flex-direction: column; }
+    .alt-item { display: flex; align-items: center; justify-content: space-between; padding: 16px 22px; border-bottom: 1px solid var(--gray-border); gap: 14px; }
+    .alt-item:last-child { border-bottom: none; }
+    .alt-left { display: flex; align-items: center; gap: 14px; }
+    .alt-icon { width: 44px; height: 44px; border-radius: 10px; display: flex; align-items: center; justify-content: center; font-size: 20px; flex-shrink: 0; }
+    .alt-name { font-family: 'Poppins', sans-serif; font-weight: 700; font-size: 14px; color: var(--text); }
+    .alt-detail { font-size: 12.5px; color: var(--text-light); margin-top: 1px; }
+    .alt-value { font-family: 'Poppins', sans-serif; font-weight: 700; font-size: 14px; color: var(--green); }
+
+    .contact-box { background: var(--navy); border-radius: var(--radius); padding: 24px; color: #fff; }
+    .contact-box h3 { font-size: 16px; font-weight: 700; margin-bottom: 14px; color: var(--green-accent); display: flex; align-items: center; gap: 8px; }
+    .contact-box-row { display: flex; align-items: center; gap: 11px; margin-bottom: 10px; font-size: 14px; color: rgba(255,255,255,.75); }
+    .contact-box-row:last-child { margin-bottom: 0; }
+    .contact-box-row i { color: var(--green-accent); width: 16px; text-align: center; flex-shrink: 0; }
+    .contact-box-row a { color: rgba(255,255,255,.85); transition: var(--transition); }
+    .contact-box-row a:hover { color: var(--green-accent); }
+
+    /* ── RIGHT COLUMN — STICKY CARD ── */
+    .pay-card { background: #fff; border-radius: var(--radius); box-shadow: var(--shadow-lg); overflow: hidden; position: sticky; top: 90px; }
+    .pay-card-head { background: linear-gradient(135deg, var(--navy) 0%, var(--navy-mid) 100%); padding: 28px 28px 24px; display: flex; align-items: center; gap: 14px; }
+    .pay-card-logo { width: 48px; height: 48px; background: var(--green); border-radius: 10px; display: flex; align-items: center; justify-content: center; color: #fff; font-size: 22px; flex-shrink: 0; }
+    .pay-card-name { font-family: 'Poppins', sans-serif; font-weight: 800; font-size: 14.5px; color: #fff; line-height: 1.2; }
+    .pay-card-sub { font-size: 11.5px; color: rgba(255,255,255,.55); margin-top: 2px; }
+    .pay-card-body { padding: 28px; }
+    .pay-card-body h3 { font-size: 20px; font-weight: 800; color: var(--text); margin-bottom: 6px; }
+    .pay-card-body > p { font-size: 13.5px; color: var(--text-light); margin-bottom: 24px; }
+
+    .pay-now-btn { display: flex; align-items: center; justify-content: center; gap: 10px; width: 100%; background: var(--green); color: #fff; padding: 16px 20px; border-radius: var(--radius-sm); font-family: 'Poppins', sans-serif; font-weight: 700; font-size: 15.5px; letter-spacing: .02em; transition: var(--transition); border: none; cursor: pointer; }
+    .pay-now-btn:hover { background: #1b5e20; transform: translateY(-2px); box-shadow: 0 8px 24px rgba(46,125,50,.35); }
+    .pay-now-btn i { font-size: 16px; }
+
+    .pay-divider { display: flex; align-items: center; gap: 12px; margin: 20px 0; }
+    .pay-divider::before, .pay-divider::after { content: ''; flex: 1; height: 1px; background: var(--gray-border); }
+    .pay-divider span { font-size: 12px; color: var(--text-light); font-weight: 500; white-space: nowrap; }
+
+    .trust-list { display: flex; flex-direction: column; gap: 9px; margin-bottom: 22px; }
+    .trust-row { display: flex; align-items: center; gap: 10px; font-size: 13px; color: var(--text-mid); }
+    .trust-row i { color: var(--green); font-size: 13px; width: 16px; text-align: center; flex-shrink: 0; }
+
+    .pay-methods { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; }
+    .pay-method-tag { display: flex; align-items: center; gap: 5px; background: var(--gray-bg); border: 1px solid var(--gray-border); border-radius: 6px; padding: 5px 10px; font-size: 11.5px; font-weight: 600; color: var(--text-mid); }
+    .pay-method-tag i { font-size: 13px; }
+
+    .stripe-badge { display: flex; align-items: center; justify-content: center; gap: 7px; margin-top: 18px; padding-top: 18px; border-top: 1px solid var(--gray-border); }
+    .stripe-badge span { font-size: 11.5px; color: var(--text-light); }
+    .stripe-badge i { color: #635bff; font-size: 13px; }
+
+    /* ── FAQ ── */
+    .faq { background: #fff; padding: 72px 0; }
+    .faq-inner { max-width: 760px; margin: 0 auto; }
+    .section-label { font-size: 11px; font-weight: 700; color: var(--green); letter-spacing: .15em; text-transform: uppercase; margin-bottom: 8px; display: flex; align-items: center; gap: 12px; }
+    .section-label::after { content: ''; flex: 1; height: 2px; background: var(--green); max-width: 50px; }
+    .faq-inner h2 { font-size: clamp(22px, 3vw, 32px); font-weight: 800; color: var(--text); margin-bottom: 36px; letter-spacing: -.01em; }
+    .faq-list { display: flex; flex-direction: column; gap: 10px; }
+    .faq-item { border: 2px solid var(--gray-border); border-radius: var(--radius-sm); overflow: hidden; transition: border-color .3s; }
+    .faq-item.open { border-color: var(--green); }
+    .faq-q { display: flex; align-items: center; justify-content: space-between; padding: 17px 20px; cursor: pointer; gap: 16px; user-select: none; background: var(--gray-bg); }
+    .faq-q span { font-family: 'Poppins', sans-serif; font-size: 14.5px; font-weight: 700; color: var(--text); }
+    .faq-ico { width: 26px; height: 26px; border-radius: 50%; background: var(--green-light); display: flex; align-items: center; justify-content: center; color: var(--green); font-size: 12px; transition: var(--transition); flex-shrink: 0; }
+    .faq-item.open .faq-ico { background: var(--green); color: #fff; transform: rotate(45deg); }
+    .faq-a { max-height: 0; overflow: hidden; transition: max-height .38s ease; }
+    .faq-a-inner { padding: 16px 20px 20px; font-size: 14.5px; color: var(--text-mid); line-height: 1.8; background: #fff; }
+    .faq-item.open .faq-a { max-height: 300px; }
+
+    /* ── CTA BANNER ── */
+    .cta-banner { background: linear-gradient(135deg, var(--navy) 0%, #1a3a1a 100%); padding: 56px 0; }
+    .cta-banner .container { display: flex; align-items: center; justify-content: space-between; gap: 32px; flex-wrap: wrap; }
+    .cta-banner-left h2 { font-size: clamp(20px, 3vw, 30px); font-weight: 800; color: #fff; margin-bottom: 8px; }
+    .cta-banner-left p { font-size: 15px; color: rgba(255,255,255,.65); }
+    .cta-banner-btns { display: flex; align-items: center; gap: 12px; flex-shrink: 0; flex-wrap: wrap; }
+    .btn-call { display: flex; align-items: center; gap: 8px; background: var(--green-accent); color: var(--navy); padding: 13px 24px; border-radius: var(--radius-sm); font-family: 'Poppins', sans-serif; font-weight: 700; font-size: 14px; transition: var(--transition); }
+    .btn-call:hover { background: #fff; }
+    .btn-email { display: flex; align-items: center; gap: 8px; border: 2px solid rgba(255,255,255,.3); color: #fff; padding: 12px 22px; border-radius: var(--radius-sm); font-family: 'Poppins', sans-serif; font-weight: 600; font-size: 14px; transition: var(--transition); }
+    .btn-email:hover { border-color: var(--green-accent); color: var(--green-accent); }
+
+    /* ── FOOTER ── */
+    .footer { background: #080f18; color: rgba(255,255,255,.6); padding: 36px 0; }
+    .footer .container { display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 14px; }
+    .footer-logo { display: flex; align-items: center; gap: 9px; }
+    .footer-logo .fi { width: 32px; height: 32px; background: var(--green); border-radius: 7px; display: flex; align-items: center; justify-content: center; color: #fff; font-size: 15px; }
+    .footer-logo .fn { font-family: 'Poppins', sans-serif; font-weight: 800; font-size: 13px; color: #fff; }
+    .footer-logo .ft { font-size: 10.5px; color: var(--green-accent); font-weight: 500; }
+    .footer-copy { font-size: 12px; }
+    .footer-copy a { color: var(--green-accent); }
+    .footer-links { display: flex; gap: 18px; }
+    .footer-links a { font-size: 12.5px; color: rgba(255,255,255,.45); transition: var(--transition); }
+    .footer-links a:hover { color: var(--green-accent); }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 900px) {
+      .main .container { grid-template-columns: 1fr; }
+      .pay-card { position: static; }
+      .pay-card { order: -1; }
+    }
+    @media (max-width: 600px) {
+      .cta-banner .container { flex-direction: column; align-items: flex-start; }
+      .footer .container { flex-direction: column; align-items: flex-start; }
+      .alt-item { flex-direction: column; align-items: flex-start; gap: 8px; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- TOPBAR -->
+<div class="topbar">
+  <div class="container">
+    <span><i class="fa-solid fa-map-pin" style="color:var(--green-accent);margin-right:5px;"></i>Serving Peachtree Corners &amp; Metro Atlanta</span>
+    <a href="tel:7702562754" class="topbar-phone"><i class="fa-solid fa-phone"></i>770-256-2754</a>
+  </div>
+</div>
+
+<!-- NAVBAR -->
+<nav class="navbar">
+  <div class="container">
+    <a href="index.html" class="logo">
+      <div class="logo-icon"><i class="fa-solid fa-bolt"></i></div>
+      <div>
+        <div class="logo-name">Don The Electric Mon</div>
+        <div class="logo-tag">30 Years of Electrical Experience</div>
+      </div>
+    </a>
+    <a href="index.html" class="back-link"><i class="fa-solid fa-arrow-left"></i>Back to Home</a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="container">
+    <div class="hero-badge"><i class="fa-solid fa-shield-halved"></i>Secure &amp; Easy Payment</div>
+    <h1>Pay Your <span>Invoice</span></h1>
+    <p>Pay quickly and securely using card, Zelle, Venmo, or Cash App. Questions? Call Don directly at 770-256-2754.</p>
+  </div>
+</section>
+
+<!-- MAIN -->
+<main class="main">
+  <div class="container">
+
+    <!-- LEFT COLUMN -->
+    <div class="left-col">
+
+      <!-- HOW IT WORKS -->
+      <div class="info-section reveal">
+        <h2><i class="fa-solid fa-list-check"></i>How It Works</h2>
+        <div class="steps">
+          <div class="step">
+            <div class="step-num"><span>1</span></div>
+            <div class="step-body">
+              <h4>Click "Pay Now Securely"</h4>
+              <p>You'll be taken to a secure, encrypted checkout page powered by Stripe — the same payment technology trusted by Amazon, Google, and millions of businesses worldwide.</p>
+            </div>
+          </div>
+          <div class="step">
+            <div class="step-num"><span>2</span></div>
+            <div class="step-body">
+              <h4>Enter Your Payment Details</h4>
+              <p>Enter your card information, or pay with Apple Pay or Google Pay. All transactions are protected by 256-bit SSL encryption.</p>
+            </div>
+          </div>
+          <div class="step">
+            <div class="step-num"><span>3</span></div>
+            <div class="step-body">
+              <h4>Done — You'll Receive a Receipt</h4>
+              <p>An instant email confirmation is sent to you. Don receives notification and your invoice is marked paid. Simple as that.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ALTERNATIVE PAYMENT METHODS -->
+      <div class="alt-methods reveal">
+        <div class="alt-methods-header">
+          <i class="fa-solid fa-ellipsis"></i>
+          <span>Prefer to Pay Another Way?</span>
+        </div>
+        <div class="alt-list">
+          <div class="alt-item">
+            <div class="alt-left">
+              <div class="alt-icon" style="background:#e8f0fe;"><i class="fa-solid fa-bolt" style="color:#1a73e8;"></i></div>
+              <div>
+                <div class="alt-name">Zelle</div>
+                <div class="alt-detail">Fast bank-to-bank transfer · No fees</div>
+              </div>
+            </div>
+            <div class="alt-value">770-256-2754</div>
+          </div>
+          <div class="alt-item">
+            <div class="alt-left">
+              <div class="alt-icon" style="background:#e8f4f8;"><i class="fa-brands fa-paypal" style="color:#3d95ce;"></i></div>
+              <div>
+                <div class="alt-name">Venmo</div>
+                <div class="alt-detail">Send payment directly to Don</div>
+              </div>
+            </div>
+            <!-- UPDATE: Replace with Don's actual Venmo handle -->
+            <div class="alt-value">@DonElectricMon</div>
+          </div>
+          <div class="alt-item">
+            <div class="alt-left">
+              <div class="alt-icon" style="background:#e8f5e9;"><i class="fa-solid fa-dollar-sign" style="color:#00c853;"></i></div>
+              <div>
+                <div class="alt-name">Cash App</div>
+                <div class="alt-detail">Instant payment via Cash App</div>
+              </div>
+            </div>
+            <!-- UPDATE: Replace with Don's actual Cash App $cashtag -->
+            <div class="alt-value">$DonElectricMon</div>
+          </div>
+          <div class="alt-item">
+            <div class="alt-left">
+              <div class="alt-icon" style="background:#f8f9fa;"><i class="fa-solid fa-envelope-open-text" style="color:#555;"></i></div>
+              <div>
+                <div class="alt-name">Check</div>
+                <div class="alt-detail">Mail or hand deliver</div>
+              </div>
+            </div>
+            <div class="alt-value">Don The Electric Mon</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- CONTACT BOX -->
+      <div class="contact-box reveal">
+        <h3><i class="fa-solid fa-headset"></i>Need Help With Your Payment?</h3>
+        <div class="contact-box-row"><i class="fa-solid fa-phone"></i><a href="tel:7702562754">770-256-2754</a></div>
+        <div class="contact-box-row"><i class="fa-solid fa-envelope"></i><a href="mailto:dontelectricmon@gmail.com">dontelectricmon@gmail.com</a></div>
+        <div class="contact-box-row"><i class="fa-solid fa-location-dot"></i><span>Peachtree Corners, GA · Metro Atlanta</span></div>
+      </div>
+
+    </div><!-- /left-col -->
+
+    <!-- RIGHT COLUMN — STICKY PAYMENT CARD -->
+    <div class="right-col">
+      <div class="pay-card reveal">
+        <div class="pay-card-head">
+          <div class="pay-card-logo"><i class="fa-solid fa-bolt"></i></div>
+          <div>
+            <div class="pay-card-name">Don The Electric Mon</div>
+            <div class="pay-card-sub">Peachtree Corners, GA &middot; Licensed &amp; Insured</div>
+          </div>
+        </div>
+        <div class="pay-card-body">
+          <h3>Ready to Pay Your Invoice?</h3>
+          <p>Secure card payment — processed by Stripe.</p>
+
+          <!-- UPDATE: Replace href with your actual Stripe payment link -->
+          <a href="https://buy.stripe.com/REPLACE_WITH_YOUR_STRIPE_LINK" target="_blank" rel="noopener" class="pay-now-btn">
+            <i class="fa-solid fa-lock"></i>Pay Now Securely
+          </a>
+
+          <div class="pay-divider"><span>Trust &amp; Security</span></div>
+
+          <div class="trust-list">
+            <div class="trust-row"><i class="fa-solid fa-shield-halved"></i>256-bit SSL encryption</div>
+            <div class="trust-row"><i class="fa-solid fa-circle-check"></i>PCI DSS Level 1 certified</div>
+            <div class="trust-row"><i class="fa-solid fa-envelope"></i>Instant email receipt</div>
+            <div class="trust-row"><i class="fa-brands fa-apple" style="color:var(--text-mid);"></i>Apple Pay &amp; Google Pay accepted</div>
+          </div>
+
+          <div class="pay-divider"><span>Accepted Cards</span></div>
+
+          <div class="pay-methods">
+            <div class="pay-method-tag"><i class="fa-brands fa-cc-visa" style="color:#1a1f71;"></i>Visa</div>
+            <div class="pay-method-tag"><i class="fa-brands fa-cc-mastercard" style="color:#eb001b;"></i>Mastercard</div>
+            <div class="pay-method-tag"><i class="fa-brands fa-cc-amex" style="color:#007bc1;"></i>Amex</div>
+            <div class="pay-method-tag"><i class="fa-brands fa-cc-discover" style="color:#f76f20;"></i>Discover</div>
+          </div>
+
+          <div class="stripe-badge">
+            <i class="fa-solid fa-lock"></i>
+            <span>Payments secured by <strong style="color:#635bff;">Stripe</strong></span>
+          </div>
+        </div>
+      </div>
+    </div><!-- /right-col -->
+
+  </div>
+</main>
+
+<!-- FAQ -->
+<section class="faq">
+  <div class="faq-inner reveal">
+    <div class="section-label">Common Questions</div>
+    <h2>Payment FAQ</h2>
+    <div class="faq-list">
+      <div class="faq-item">
+        <div class="faq-q" onclick="toggleFaq(this)">
+          <span>Is it safe to pay with my card online?</span>
+          <div class="faq-ico"><i class="fa-solid fa-plus"></i></div>
+        </div>
+        <div class="faq-a">
+          <div class="faq-a-inner">Yes — all card payments are processed through Stripe, which is trusted by millions of businesses including Amazon, Shopify, and Google. Your card information is encrypted with 256-bit SSL and is never stored on our servers. Stripe is PCI DSS Level 1 certified, the highest level of security certification available.</div>
+        </div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q" onclick="toggleFaq(this)">
+          <span>Will I receive a receipt after paying?</span>
+          <div class="faq-ico"><i class="fa-solid fa-plus"></i></div>
+        </div>
+        <div class="faq-a">
+          <div class="faq-a-inner">Yes. As soon as your payment is processed, an email receipt is sent automatically to the email address you provide at checkout. Keep it for your records. If you don't receive it within a few minutes, check your spam folder or call Don at 770-256-2754.</div>
+        </div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q" onclick="toggleFaq(this)">
+          <span>Can I pay with Zelle, Venmo, or Cash App instead?</span>
+          <div class="faq-ico"><i class="fa-solid fa-plus"></i></div>
+        </div>
+        <div class="faq-a">
+          <div class="faq-a-inner">Absolutely. If you prefer to avoid card processing fees or just find it easier, you can pay via Zelle at 770-256-2754, Venmo @DonElectricMon, or Cash App $DonElectricMon. Please include your name and invoice number with your payment so Don can match it to your job.</div>
+        </div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q" onclick="toggleFaq(this)">
+          <span>What if I need to pay a partial amount?</span>
+          <div class="faq-ico"><i class="fa-solid fa-plus"></i></div>
+        </div>
+        <div class="faq-a">
+          <div class="faq-a-inner">No problem. Call or text Don at 770-256-2754 and he'll arrange a custom payment link for the specific amount, or you can use Zelle, Venmo, or Cash App for a partial payment. Just make sure to note your name and invoice number.</div>
+        </div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q" onclick="toggleFaq(this)">
+          <span>I paid but something looks wrong — who do I contact?</span>
+          <div class="faq-ico"><i class="fa-solid fa-plus"></i></div>
+        </div>
+        <div class="faq-a">
+          <div class="faq-a-inner">Call or text Don directly at 770-256-2754 or email dontelectricmon@gmail.com. Please have your payment receipt handy. We'll resolve any issues quickly — Don values your business and wants to make things right.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA BANNER -->
+<section class="cta-banner">
+  <div class="container">
+    <div class="cta-banner-left">
+      <h2>Questions About Your Invoice?</h2>
+      <p>Call or text Don directly — he'll sort it out fast.</p>
+    </div>
+    <div class="cta-banner-btns">
+      <a href="tel:7702562754" class="btn-call"><i class="fa-solid fa-phone"></i>770-256-2754</a>
+      <a href="mailto:dontelectricmon@gmail.com" class="btn-email"><i class="fa-solid fa-envelope"></i>Send an Email</a>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="footer">
+  <div class="container">
+    <div class="footer-logo">
+      <div class="fi"><i class="fa-solid fa-bolt"></i></div>
+      <div>
+        <div class="fn">Don The Electric Mon</div>
+        <div class="ft">30 Years of Electrical Experience</div>
+      </div>
+    </div>
+    <div class="footer-copy">
+      &copy; 2026 Don The Electric Mon. Website by <a href="https://corexsolutions.net" target="_blank" rel="noopener">CoreX Solutions</a>
+    </div>
+    <div class="footer-links">
+      <a href="index.html">Home</a>
+      <a href="index.html#contact">Contact</a>
+      <a href="tel:7702562754">Call Don</a>
+    </div>
+  </div>
+</footer>
+
+<script>
+  // Reveal on scroll
+  const reveals = document.querySelectorAll('.reveal');
+  const revealObs = new IntersectionObserver(entries => {
+    entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('in'); revealObs.unobserve(e.target); } });
+  }, { threshold: 0.08 });
+  reveals.forEach(el => revealObs.observe(el));
+
+  // FAQ accordion
+  function toggleFaq(el) {
+    const item = el.closest('.faq-item');
+    const isOpen = item.classList.contains('open');
+    document.querySelectorAll('.faq-item.open').forEach(i => i.classList.remove('open'));
+    if (!isOpen) item.classList.add('open');
+  }
+</script>
+</body>
+</html>
